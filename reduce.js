@@ -129,9 +129,80 @@ let namesByProfession = teamMembers.reduce((acc, curr) => {
   if (!acc[key]) {
     acc[key] = curr.name;
   } else {
-    // ????
+    acc[key] = `${acc[key]}, ${curr.name}`;
   }
-  return acc;
+  return acc; 
 }, {});
 
 console.log(namesByProfession);
+
+// -----
+// Console
+// -----
+// {
+//   Developer: 'Andrew, Ariel',
+//   Designer: 'Michael, Kelly',
+//   Manager: 'Albert'
+// }
+// This is as close as I could get it to match desired output.
+
+
+// Challenge - Use the reduce method to execute a function on each 
+// item, resulting in a signle object.  The object should be that
+// of the student with the highest english score and should show the
+// student's name and english score. You can either create the arrow
+// function within the reduce method or create a arrow function outside
+// and pass it into the reduce method. Use destructuring when you can.
+
+let students = [
+  {
+      name: 'John',
+      subjects: ['maths', 'english', 'cad'],
+      teacher: {maths: 'Harry', english: 'Joan', cad: 'Paul'},
+      results: {maths: 90, english: 75, cad: 87},
+  },
+  {
+      name: 'Emily',
+      subjects: ['science', 'english', 'art'],
+      teacher: {science: 'Iris', english: 'Joan', art: 'Simon'},
+      results: {science: 93, english: 73, art: 95},
+  },
+  {
+      name: 'Adam',
+      subjects: ['science', 'maths', 'art'],
+      teacher: {science: 'Iris', maths: 'Harry', art: 'Simon'},
+      results: {science: 93, english: 88, maths: 97, art: 95},
+  },
+  {
+      name: 'Fran',
+      subjects: ['science', 'english', 'art'],
+      teacher: {science: 'Iris', english: 'Joan', art: 'Simon'},
+      results: {science: 93, english: 87, art: 95},
+  }
+];
+
+// const englishScores = students.map(student => student.results.english);
+
+// let highestScore = Math.max(...englishScores);
+// console.log(highestScore);
+
+// Create a variable named biggest using the keyword conts and assign it a 
+// value from using the reduce method on the students array.
+// Use either an arrow function inside the reduce method, or create a function
+// and pass it into the reduce method.
+// Use a default value with the reduce method
+// Log out the variable biggest to see the value
+const biggest = students.reduce((acc, curr) => {
+  if (curr.results.english > acc) {
+      acc = curr.results.english;
+  }
+  return acc;
+}, 0);
+
+const highScore = students.filter(student => student.results.english === biggest).map(student => ({name: student.name, max: student.results.english}))[0];
+console.log(highScore);
+
+// This produces the right result, however it does not pass the test.  
+// Errors given are: 
+// Does the reduce method use  default value?
+// Doest the variable biggest contain the correct value?
