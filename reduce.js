@@ -70,7 +70,7 @@
 // This is how the initial value is set on the one liner above
 const nums = [0, 1, 2, 3, 4];
 let sum = nums.reduce((acc, curr) => acc + curr, 0);
-console.log(sum);
+// console.log(sum);
 
 
 const teamMembers = [
@@ -103,7 +103,7 @@ const teamMembers = [
 // console.log(teamMembers[0].yrsExperience);
 // Totaling a specific object property
 let totalYrsExperience = teamMembers.reduce((acc, curr) => acc + curr.yrsExperience, 0);
-console.log(totalYrsExperience);
+// console.log(totalYrsExperience);
 
 // Grouping by a property, and totaling it too
 let experienceByProfession = teamMembers.reduce((acc, curr) => {
@@ -116,7 +116,7 @@ let experienceByProfession = teamMembers.reduce((acc, curr) => {
   return acc;
 }, {});
 
-console.log(experienceByProfession);
+// console.log(experienceByProfession);
 
 // Restructure the teamMembers array into an object that looks like this:
 // {
@@ -125,30 +125,21 @@ console.log(experienceByProfession);
 //   Manager: ['Albert']
 // }
 let namesByProfession = teamMembers.reduce((acc, curr) => {
+  
   let key = curr.profession;
   if (!acc[key]) {
-    acc[key] = curr.name;
+    acc[key] = [curr.name];
   } else {
-    acc[key] = `${acc[key]}, ${curr.name}`;
+    acc[key].push(curr.name);
   }
   return acc; 
 }, {});
 
 console.log(namesByProfession);
 
-// -----
-// Console
-// -----
-// {
-//   Developer: 'Andrew, Ariel',
-//   Designer: 'Michael, Kelly',
-//   Manager: 'Albert'
-// }
-// This is as close as I could get it to match desired output.
-
 
 // Challenge - Use the reduce method to execute a function on each 
-// item, resulting in a signle object.  The object should be that
+// item, resulting in a single object.  The object should be that
 // of the student with the highest english score and should show the
 // student's name and english score. You can either create the arrow
 // function within the reduce method or create a arrow function outside
@@ -205,4 +196,23 @@ console.log(highScore);
 // This produces the right result, however it does not pass the test.  
 // Errors given are: 
 // Does the reduce method use  default value?
-// Doest the variable biggest contain the correct value?
+// Does the variable biggest contain the correct value?
+
+// const biggest = () => {
+    
+//   const max = students.reduce((acc, curr) => {
+//       return curr.results.english > acc.results.english ? curr : acc;
+//   });
+  
+//   return (
+//       students.map((student) => {
+     
+//           const BestScore = max.results.english === student.result.english;
+     
+//           return (
+//               {name: student.name, max: student.results.english}
+//           );
+//      })
+//   );
+// };
+// console.log(biggest);
