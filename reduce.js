@@ -172,11 +172,6 @@ let students = [
   }
 ];
 
-// const englishScores = students.map(student => student.results.english);
-
-// let highestScore = Math.max(...englishScores);
-// console.log(highestScore);
-
 // Create a variable named biggest using the keyword conts and assign it a 
 // value from using the reduce method on the students array.
 // Use either an arrow function inside the reduce method, or create a function
@@ -184,19 +179,21 @@ let students = [
 // Use a default value with the reduce method
 // Log out the variable biggest to see the value
 const biggest = students.reduce((acc, curr) => {
-  if (curr.results.english > acc) {
-      acc = curr.results.english;
+  acc = acc.max > curr.results.english ? acc: {name:curr.name, max:curr.results.english};  
+  return acc;
+}, {name: '', max: 0});
+console.log(biggest);
+
+/* Using destructuring 
+const biggest = students.reduce(({max, name}, {name:n, results:{english}}) => {
+  if(max < english) {
+      acc = {name:n, max: english};
   }
   return acc;
-}, 0);
-
-const highScore = students.filter(student => student.results.english === biggest).map(student => ({name: student.name, max: student.results.english}))[0];
-console.log(highScore);
-
-// This produces the right result, however it does not pass the test.  
-// Errors given are: 
-// Does the reduce method use  default value?
-// Does the variable biggest contain the correct value?
+  }, {name: '', max: 0});
+  
+console.log(biggest);
+*/
 
 // const biggest = () => {
     
